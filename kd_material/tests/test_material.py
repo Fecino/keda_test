@@ -17,7 +17,7 @@ class TestMaterialModel(TransactionCase):
             'name': 'Test Material',
             'code': 'TM01',
             'type': 'fabric',
-            'price': 200.0,
+            'buy_price': 200.0,
             'currency_id': self.Currency.id,
             'supplier_id': self.Partner.id
         })
@@ -29,7 +29,7 @@ class TestMaterialModel(TransactionCase):
             'name': 'Material 1',
             'code': 'DUP01',
             'type': 'cotton',
-            'price': 300.0,
+            'buy_price': 300.0,
             'currency_id': self.Currency.id,
             'supplier_id': self.Partner.id
         })
@@ -39,18 +39,18 @@ class TestMaterialModel(TransactionCase):
                 'name': 'Material 2',
                 'code': 'DUP01',
                 'type': 'jeans',
-                'price': 350.0,
+                'buy_price': 350.0,
                 'currency_id': self.Currency.id,
                 'supplier_id': self.Partner.id
             })
 
-    def test_price_check_constraint(self):
+    def test_buy_price_check_constraint(self):
         with self.assertRaises(IntegrityError):
             self.Material.create({
                 'name': 'Cheap Material',
                 'code': 'CHEAP',
                 'type': 'cotton',
-                'price': 50.0,  # Below threshold
+                'buy_price': 50.0,  # Below threshold
                 'currency_id': self.Currency.id,
                 'supplier_id': self.Partner.id
             })
@@ -60,7 +60,7 @@ class TestMaterialModel(TransactionCase):
             'name': 'Formatted Material',
             'code': 'FMT01',
             'type': 'jeans',
-            'price': 400.0,
+            'buy_price': 400.0,
             'currency_id': self.Currency.id,
             'supplier_id': self.Partner.id
         })
@@ -72,7 +72,7 @@ class TestMaterialModel(TransactionCase):
             'name': 'Searchable Material',
             'code': 'SRC01',
             'type': 'fabric',
-            'price': 250.0,
+            'buy_price': 250.0,
             'currency_id': self.Currency.id,
             'supplier_id': self.Partner.id
         })

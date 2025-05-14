@@ -6,20 +6,20 @@ classification, pricing, and supplier details. It provides constraints
 to ensure data integrity such as unique material codes and minimum pricing.
 
 Key Features:
-- Tracks material name, code, type, and purchase price
+- Tracks material name, code, type, and purchase buy_price
 - Enforces unique material codes
-- Requires material prices to be above 100
+- Requires material buy_prices to be above 100
 - Supports custom name display and search functionality
 
 Fields:
 - name: Material name (required)
 - code: Unique material code (required)
 - type: Material type selection (fabric, jeans, cotton)
-- price: Material purchase price
+- buy_price: Material purchase buy_price
 - supplier_id: Associated supplier
 
 Custom methods:
-- _check_data: Validates material code uniqueness and price
+- _check_data: Validates material code uniqueness and buy_price
 - name_get: Generates display name with code and name
 - _name_search: Enables searching by name or code
 """
@@ -32,7 +32,7 @@ class Material(models.Model):
     _description = 'Registrasi Material'
     _sql_constraints = [
         ('unique_material_code', 'UNIQUE(code)', 'Material code must be unique!'),
-        ('check_material_price', 'CHECK(price > 100)', 'Material price must be above 100!')
+        ('check_material_buy_price', 'CHECK(buy_price > 100)', 'Material buy_price must be above 100!')
     ]
 
     name = fields.Char(string="Material Name", required=True)
@@ -42,7 +42,7 @@ class Material(models.Model):
         ('jeans', 'Jeans'),
         ('cotton', 'Cotton')
     ], string="Material Type", required=True)
-    price = fields.Monetary(string="Material Buy Price", required=True)
+    buy_price = fields.Monetary(string="Material Buy Price", required=True)
     currency_id = fields.Many2one("res.currency", string="Currency", required=True, default=lambda self: self.env.company.currency_id)
     
     # add supplier_rank to domain if needed and if module accunt is installed

@@ -3,7 +3,7 @@ from odoo.http import request
 import json
 
 class MaterialController(http.Controller):
-    _MATERIAL_FIELDS = ['code', 'name', 'type', 'price', 'supplier_id']
+    _MATERIAL_FIELDS = ['code', 'name', 'type', 'buy_price', 'supplier_id']
 
     def _get_material(self, material_id):
         material = request.env['kd_material.material'].sudo().browse(material_id)
