@@ -1,0 +1,70 @@
+<odoo>
+	<data>
+		<record id="kd_material_material_view_form" model="ir.ui.view">
+			<field name="name">kd_material_material.view.form</field>
+			<field name="model">kd_material.material</field>
+			<field name="arch" type="xml">
+				<form string="">
+					<sheet>
+						<div class="oe_title">
+							<h1>
+								<field name="name"/>
+							</h1>
+						</div>
+						<group>
+							<field name="code"/>
+							<field name="type"/>
+							<field name="supplier_id"/>
+							<field name="currency_id" invisible="1"/>
+							<field name="price"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record id="kd_material_material_view_tree" model="ir.ui.view">
+			<field name="name">kd_material_material.view.tree</field>
+			<field name="model">kd_material.material</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="code"/>
+					<field name="name"/>
+					<field name="type"/>
+					<field name="supplier_id"/>
+					<field name="currency_id" invisible="1"/>
+					<field name="price"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="kd_material_material_menu" model="ir.actions.act_window">
+			<field name="name">Material</field>
+			<field name="view_mode">tree,form</field>
+			<field name="res_model">kd_material.material</field>
+			<field name="help" type="html">
+				<p class="o_view_nocontent_smiling_face">
+					No Material found !
+				</p>
+				<p>
+					You can easily create the Material by hit the <b>New</b> button above.
+				</p>
+			</field>
+		</record>
+		<record id="kd_material_material_view_search" model="ir.ui.view">
+			<field name="name">kd_material_material.view.search</field>
+			<field name="model">kd_material.material</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="name"/>
+					<field name="supplier_id"/>
+					<field name="type"/>
+					<separator/>
+					<filter string="Suppliers" name="supplier" domain="[]" context="{'group_by': 'supplier_id'}"/>
+					<filter string="Type" name="type" domain="[]" context="{'group_by': 'type'}"/>
+				</search>
+			</field>
+		</record>
+		<menuitem id="kd_material.kd_material_root_menu" name="Material" sequence="10"/>
+		<menuitem id="kd_material_material_menu_item" name="Material" action="kd_material_material_menu" parent="kd_material.kd_material_root_menu"/>
+	</data>
+</odoo>
