@@ -44,6 +44,8 @@ class Material(models.Model):
     ], string="Material Type", required=True)
     price = fields.Monetary(string="Material Buy Price", required=True)
     currency_id = fields.Many2one("res.currency", string="Currency", required=True, default=lambda self: self.env.company.currency_id)
+    
+    # add supplier_rank to domain if needed and if module accunt is installed
     supplier_id = fields.Many2one("res.partner", string="Supplier Name", required=True)
 
     @api.depends('name', 'code')
